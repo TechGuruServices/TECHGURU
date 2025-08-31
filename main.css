@@ -1,0 +1,79 @@
+/* ===============================
+   Light Mode Overrides
+   =============================== */
+[data-theme="light"] {
+  --bg-color: #f9fafb;         /* light gray background */
+  --card-bg: #ffffff;          /* white cards/sections */
+  --text-color: #0f172a;       /* near-black text */
+  --subtext-color: #374151;    /* muted gray text */
+  --accent-blue: #2563eb;      /* brand blue for links/buttons */
+  --accent-pink: #d946ef;      /* warm pink accent (toggle knob) */
+  --border-color: #e5e7eb;     /* light borders */
+}
+
+[data-theme="light"] body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+
+[data-theme="light"] header.site-header,
+[data-theme="light"] footer.footer {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .hero::before {
+  /* lighter overlay for hero so text still readable on bright images */
+  background: rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="light"] .hero-content h1,
+[data-theme="light"] .hero-content p {
+  color: var(--text-color);
+  text-shadow: none;
+}
+
+[data-theme="light"] .service-card {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .faq-question,
+[data-theme="light"] .testimonial-card {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .btn.btn-primary {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+}
+[data-theme="light"] .btn.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+[data-theme="light"] .btn.btn-secondary {
+  background: var(--accent-pink);
+  border-color: var(--accent-pink);
+  color: #fff;
+}
+[data-theme="light"] .btn.btn-secondary:hover {
+  background: #c026d3;
+}
+
+/* Chatbox styling in light mode */
+[data-theme="light"] .chatbox {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: var(--text-color);
+}
+[data-theme="light"] .chatbox-header {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: var(--text-color);
+}
+[data-theme="light"] .chatbox-close {
+  color: var(--text-color);
+}
