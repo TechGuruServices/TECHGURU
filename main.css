@@ -97,6 +97,20 @@ header.site-header {
 .hero-content h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 5s linear infinite, fadeOut 1s ease forwards 5s;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
 }
 
 .hero-content .subtitle {
@@ -349,12 +363,6 @@ footer.footer a {
   border-bottom: 1px solid var(--border-color);
 }
 
-[data-theme="light"] .hero::before {
-  /* lighter overlay for hero so text still readable on bright images */
-  background: rgba(255, 255, 255, 0.35);
-}
-
-[data-theme="light"] .hero-content h1,
 [data-theme="light"] .hero-content p {
   color: var(--text-color);
   text-shadow: none;

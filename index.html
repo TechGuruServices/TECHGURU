@@ -61,7 +61,7 @@
     .hero{position:relative;overflow:hidden}
     .hero-slider{position:absolute;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden}
     .hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:-1}
-    .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out}
+    .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 4s ease-in-out}
     .hero-slide.active{opacity:1}
 
     .hero-benefits{list-style:none;padding:0;margin:1rem auto;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;max-width:800px;font-size:1rem}
@@ -120,7 +120,7 @@
       </div>
       <div class="container">
         <div class="hero-content">
-          <h1>PACK. OPTIMIZE. DEPLOY. SCALE UP.</h1>
+          <h1>Streamline. Automate. Elevate.</h1>
           <p class="subtitle">Your one-man army for scalable tech systems.</p>
           <ul class="hero-benefits">
             <li><i class="fas fa-rocket" aria-hidden="true"></i> Rapid deployment &amp; scalability</li>
@@ -303,9 +303,17 @@
   <!-- Hero Slider -->
   <script>
     document.addEventListener('DOMContentLoaded',function(){
-      const heroSlides=document.querySelectorAll('.hero-slide');let i=0;
+      const heroSlides=document.querySelectorAll('.hero-slide');
+      let i=0;
       function show(n){heroSlides.forEach((s,idx)=>{s.classList.toggle('active',idx===n);});}
-      if(heroSlides.length){show(i);setInterval(()=>{i=(i+1)%heroSlides.length;show(i);},7000);}
+      if(heroSlides.length){
+        show(i);
+        setTimeout(()=>{
+          i=(i+1)%heroSlides.length;
+          show(i);
+          setInterval(()=>{i=(i+1)%heroSlides.length;show(i);},8000);
+        },5000);
+      }
     });
   </script>
 
