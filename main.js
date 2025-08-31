@@ -32,4 +32,23 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.toggle('open');
     });
   }
+
+  // rotating word carousel for hero subtitle
+  const carousel = document.getElementById('word-carousel');
+  const words = ['scalability', 'automation', 'security'];
+  let idx = 0;
+  if (carousel) {
+    setInterval(() => {
+      idx = (idx + 1) % words.length;
+      carousel.textContent = words[idx];
+    }, 3000);
+  }
+
+  // remove typewriter cursor after animation
+  const tw = document.querySelector('.typewriter');
+  if (tw) {
+    tw.addEventListener('animationend', () => {
+      tw.style.borderRight = 'none';
+    });
+  }
 });
