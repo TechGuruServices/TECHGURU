@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechGuru – Splash</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    #splash-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #splash-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #skip-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 9999;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #skip-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+  <div id="splash-container">
+    <video id="splash-video" autoplay muted playsinline>
+      <!-- Reference the existing video from the live site so the splash page functions without shipping a large video file -->
+      <source src="https://www.techguruofficial.us/splash.mp4" type="video/mp4" />
+      Your browser does not support video.
+    </video>
+    <button id="skip-btn">Skip</button>
+  </div>
+  <script>
+    (function() {
+      const video = document.getElementById('splash-video');
+      const skipBtn = document.getElementById('skip-btn');
+      function exitSplash() {
+        localStorage.setItem('splashPlayed', 'true');
+        window.location.replace('index.html');
+      }
+      video.addEventListener('ended', exitSplash);
+      skipBtn.addEventListener('click', exitSplash);
+    })();
+  </script>
+</body>
+</html>

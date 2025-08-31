@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO metadata -->
+  <meta name="description" content="TechGuru Services - Scalable Cloud, DevOps, AI, Automation solutions for startups." />
+  <meta name="keywords" content="TechGuru, cloud, DevOps, AI, automation, startup tech solutions" />
+  <meta name="robots" content="index, follow" />
+  <!-- Favicon (optional) -->
+  <link rel="icon" href="images/techguru-logo-icon.png" sizes="any" />
+  <title>TechGuru | Pack. Optimize. Deploy. Scale Up.</title>
+  <!-- Main stylesheet -->
+  <!-- Use the hosted version of our CSS to avoid local file restrictions -->
+  <link rel="stylesheet" href="https://www.techguruofficial.us/css/main.css" />
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Open Graph / Social metadata -->
+  <meta property="og:title" content="TechGuru | Pack. Optimize. Deploy. Scale Up." />
+  <meta property="og:description" content="TechGuru Services - Scalable Cloud, DevOps, AI, Automation solutions for startups." />
+  <meta property="og:image" content="images/techguru-logo-full.png" />
+  <!-- Use the live domain for the canonical URL -->
+  <meta property="og:url" content="https://www.techguruofficial.us" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Custom styles for chat animations -->
+  <style>
+    /* Floating animation for the chat toggle button */
+    .chat-toggle {
+      animation: chatFloat 4s ease-in-out infinite;
+      /* Remove default styles such as background, border and shadow on the toggle */
+      background-color: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      background-image: none !important;
+      backdrop-filter: none !important;
+      filter: none !important;
+    }
+
+    @keyframes chatFloat {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    /* Size and layout for the chatbox bot avatar */
+    .chatbox-bot-avatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* Icon inside the chatbox avatar */
+    .chatbox-bot-avatar i {
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    /* Size and layout for the chat toggle image avatar */
+    .chat-toggle-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      pointer-events: none;
+      object-fit: cover;
+    }
+
+    /* Increase the opacity of the chat modal backgrounds */
+    .chatbox {
+      /* Make the chatbox body more opaque than the default variable */
+      background: rgba(42, 42, 42, 0.75) !important;
+      /* Position the chatbox slightly higher above the toggle button */
+      bottom: 120px !important;
+    }
+
+    .chatbox-header {
+      /* Make the chatbox header background slightly more opaque */
+      background: rgba(42, 42, 42, 0.85) !important;
+    }
+
+    /* Custom themed slider for dark/light toggle */
+    /* Base track styling */
+    #theme-toggle {
+      position: relative;
+      width: 60px;
+      height: 30px;
+      border-radius: 15px;
+      /* Apply a custom accent colour for the toggle border */
+      border: 2px solid #22d3ee;
+      background: var(--card-bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Hide the default font-awesome icon inside the toggle button */
+    #theme-toggle-icon {
+      display: none;
+    }
+
+    /* Knob styling */
+    #theme-toggle::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      /* Match the knob colour to the dark mode accent colour */
+      background: #22d3ee;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    /* In light mode, move the knob to the right and apply a warm contrasting colour */
+    [data-theme="light"] #theme-toggle {
+      /* In light mode, use a contrasting accent colour */
+      border-color: #d946ef;
+      background: var(--card-bg);
+    }
+
+    [data-theme="light"] #theme-toggle::before {
+      transform: translateX(30px);
+      /* Knob colour in light mode */
+      background: #d946ef;
+    }
+
+    /* Adjust the navigation logo size to be more readable */
+    .logo {
+      /* Provide a fixed width so the full logo (shield and text) is visible */
+      width: 180px;
+      height: auto;
+      /* Ensure the entire image is visible without cropping */
+      object-fit: contain;
+    }
+
+    /* Increase the header height so the full logo fits without clipping */
+    .site-header .navbar-container {
+      /* Increase the navbar height further so the logo text is fully visible */
+      min-height: 100px;
+    }
+
+    /* Layout for the logo and brand text */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      /* Remove any background or padding from the container so the icon appears on the nav background */
+      background: transparent !important;
+      padding: 0 !important;
+    }
+
+    .logo-img {
+      /* Increase the size of the logo icon for better readability */
+      width: 60px;
+      height: 60px;
+      /* Remove any default background or border applied by the base stylesheet */
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      padding: 0 !important;
+      object-fit: contain;
+    }
+
+    /* A container that displays the brand icon as a background image. Using a div avoids inherited backgrounds on images. */
+    .logo-icon {
+      /* Make the logo responsive: clamp its width between 50px and 80px */
+      width: clamp(50px, 10vw, 80px);
+      height: clamp(50px, 10vw, 80px);
+      /* Use the latest shield icon provided by the user */
+      background-image: url('images/nav-icon-techguru.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: 700;
+      /* Colour will be defined per word */
+      color: inherit;
+    }
+
+    /* Colour definitions for the split brand name */
+    .logo-text-tech {
+      /* Vibrant blue matching the logo ring */
+      color: #29b3f0;
+    }
+
+    .logo-text-guru {
+      /* White by default for dark mode */
+      color: #ffffff;
+    }
+
+    /* Hover state for navigation links to provide subtle guidance */
+    .main-nav a {
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .main-nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #29b3f0;
+      transition: width 0.3s ease;
+    }
+    .main-nav a:hover {
+      color: #29b3f0;
+    }
+    .main-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* === Hero section enhancements === */
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Slider container covers the hero area */
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    /* Dark overlay to improve text readability over hero images */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: -1;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    /* Benefits list styling */
+    .hero-benefits {
+      list-style: none;
+      padding: 0;
+      margin: 1rem auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      max-width: 800px;
+      font-size: 1rem;
+    }
+
+    .hero-benefits li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-benefits li i {
+      color: #29b3f0;
+      font-size: 1.2rem;
+    }
+
+    /* Scroll indicator animation */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      color: #29b3f0;
+      animation: scrollBounce 2s infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* When in light mode, adjust the GURU colour for readability */
+    [data-theme="light"] .logo-text-guru {
+      /* Use a dark shade so the white text isn’t invisible on light backgrounds */
+      color: #0f172a;
+    }
+
+    /* Remove any accidental spacing between the brand spans */
+    .logo-container span {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      display: inline-block;
+    }
+
+    /* Service icon images */
+    .service-card img.service-icon-img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 12px;
+      object-fit: contain;
+    }
+
+    /* Restore gradient styling to the hero words by not overriding their colours or shadows.
+       Previously we removed the gradient and glow from the Scale/Up words. To bring back the
+       default gradient from the external stylesheet, this block intentionally remains empty. */
+
+    /* Raise the chat modal slightly so it sits higher above the chat toggle */
+    .chatbox {
+      bottom: 140px !important;
+    }
+
+    /* === Testimonial Carousel Styles === */
+    .testimonial-carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin-top: 2rem;
+      /* Maintain height for rotating cards */
+      min-height: 220px;
+    }
+
+    .testimonial-slide {
+      /* Position slides absolutely to allow custom animations */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      /* Start slides off-screen to the right with a gentle rotation */
+      transform: translateX(100%) rotate(5deg);
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      pointer-events: none;
+    }
+
+    .testimonial-slide.active {
+      opacity: 1;
+      transform: translateX(0) rotate(0);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    /* Previous slide when transitioning out */
+    .testimonial-slide.prev {
+      opacity: 0;
+      transform: translateX(-100%) rotate(-5deg);
+      z-index: 1;
+    }
+
+    /* Card styling inside each testimonial slide */
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(41, 179, 240, 0.4);
+      border-radius: 12px;
+      padding: 1.5rem;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(4px);
+      color: inherit;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .testimonial-author {
+      font-weight: 500;
+    }
+
+    .testimonial-avatar {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .testimonial-avatar i {
+      font-size: 40px;
+      color: #29b3f0;
+    }
+
+    /* Restore gradient styling to hero headline by not overriding its background or text fill.
+       The default stylesheet applies a colourful gradient across the headline text. */
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="navbar-container">
+      <div class="logo-container">
+        <!-- Use the updated shield icon with transparent background -->
+        <!-- Use a div with a background image for the icon to avoid unwanted background colours -->
+        <div class="logo-icon" role="img" aria-label="TechGuru logo"></div>
+        <!-- Display the brand name with separate styling for each part -->
+        <span class="logo-text-tech">TECH<span class="logo-text-guru">GURU</span></span>
+      </div>
+      <nav class="main-nav" id="main-nav">
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-controls">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <i id="theme-toggle-icon" class="fas fa-moon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="#contact" class="btn-cta">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+      <div id="particles-js"></div>
+      <!-- Hero image slider: cycles through high‑quality background images -->
+      <div class="hero-slider">
+        <img src="images/hero-1.jpg" alt="TechGuru circuit board" class="hero-slide" />
+        <img src="images/hero-2.jpg" alt="Let's build something brilliant" class="hero-slide" />
+        <img src="images/hero-3.jpg" alt="Tech brain neural network" class="hero-slide" />
+        <img src="images/hero-4.jpg" alt="AI‑powered efficiency" class="hero-slide" />
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <h1>PACK. OPTIMIZE. DEPLOY. SCALE UP.</h1>
+          <p class="subtitle">Your one‑man army for scalable tech systems.</p>
+          <!-- Key benefits list to provide immediate clarity -->
+          <ul class="hero-benefits">
+            <li><i class="fas fa-rocket" aria-hidden="true"></i> Rapid deployment &amp; scalability</li>
+            <li><i class="fas fa-cogs" aria-hidden="true"></i> Automated workflows</li>
+            <li><i class="fas fa-shield-alt" aria-hidden="true"></i> Robust security &amp; compliance</li>
+          </ul>
+          <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Launch My AI Assistant</a>
+            <a href="#services" class="btn btn-secondary">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <!-- Scroll indicator cueing users to explore further -->
+      <div class="scroll-indicator" aria-label="Scroll down for more">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+          <!-- Cloud -->
+          <div class="service-card">
+            <img src="images/service-cloud.png" alt="Cloud Infrastructure Icon" class="service-icon-img" />
+            <h3>Cloud Infrastructure</h3>
+            <p>Scalable cloud solutions designed for modern businesses. From setup to optimisation, we handle your infrastructure needs.</p>
+          </div>
+          <!-- AI Automation -->
+          <div class="service-card">
+            <img src="images/service-ai.png" alt="AI Automation Icon" class="service-icon-img" />
+            <h3>AI Automation</h3>
+            <p>Intelligent automation solutions that streamline your workflows and boost productivity with cutting‑edge AI technology.</p>
+          </div>
+          <!-- DevOps Solutions -->
+          <div class="service-card">
+            <img src="images/service-training.png" alt="DevOps Solutions Icon" class="service-icon-img" />
+            <h3>DevOps Solutions</h3>
+            <p>Complete DevOps pipeline setup and management to accelerate your development and deployment processes.</p>
+          </div>
+          <!-- Custom Development -->
+          <div class="service-card">
+            <img src="images/service-branding.png" alt="Custom Development Icon" class="service-icon-img" />
+            <h3>Custom Development</h3>
+            <p>Tailored software solutions built to meet your specific business requirements and technical specifications.</p>
+          </div>
+          <!-- Security & Compliance -->
+          <div class="service-card">
+            <img src="images/service-security.png" alt="Security &amp; Compliance Icon" class="service-icon-img" />
+            <h3>Security &amp; Compliance</h3>
+            <p>Comprehensive security audits and compliance solutions to protect your business and customer data.</p>
+          </div>
+          <!-- Performance Optimisation -->
+          <div class="service-card">
+            <img src="images/service-training.png" alt="Performance Optimisation Icon" class="service-icon-img" />
+            <h3>Performance Optimisation</h3>
+            <p>System optimisation and performance tuning to ensure your applications run at peak efficiency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2>About TechGuru</h2>
+        <p>Founded by Lucas Thompson, delivering enterprise‑grade DevOps, AI &amp; cloud automation for startups and solo founders. We specialise in creating scalable, efficient solutions that grow with your business.</p>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">50+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">25+</div>
+            <div class="stat-label">Happy Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">99%</div>
+            <div class="stat-label">Uptime</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">24/7</div>
+            <div class="stat-label">Support</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What services do you offer?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>We offer AI automation, cloud infrastructure, DevOps solutions and custom software development tailored for startups and small businesses.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How quickly can you start a project?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Most projects can be started within 24–48 hours. We pride ourselves on quick turnaround times and efficient delivery.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Do you offer ongoing support?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, we offer comprehensive support and maintenance packages to ensure your systems run smoothly and continue to scale.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>What's your pricing model?</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+              <p>We offer flexible pricing based on project scope and requirements. Contact us for a personalised quote that fits your budget.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2>What Our Clients Say About Us</h2>
+        <div class="testimonial-carousel">
+          <!-- Testimonial Slide 1 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
+              </div>
+              <p>"TechGuru transformed our entire infrastructure. The AI automation solutions have saved us countless hours and improved our efficiency dramatically."</p>
+              <div class="testimonial-author">
+                <strong>Sarah Johnson</strong><br />
+                <span>CEO, InnovateTech</span>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial Slide 2 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
+              </div>
+              <p>"Lucas's expertise in DevOps and cloud solutions helped us scale from startup to enterprise level. Highly recommended for any growing business."</p>
+              <div class="testimonial-author">
+                <strong>Michael Chen</strong><br />
+                <span>CTO, ScaleUp Solutions</span>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial Slide 3 -->
+          <div class="testimonial-slide">
+            <div class="testimonial-card">
+              <div class="testimonial-avatar">
+                <i class="fas fa-user-circle" aria-hidden="true"></i>
+              </div>
+              <p>"The custom development work was exceptional. They understood our needs perfectly and delivered beyond our expectations."</p>
+              <div class="testimonial-author">
+                <strong>Emily Rodriguez</strong><br />
+                <span>Founder, TechStart</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <p>Ready to transform your business? Let's discuss your project.</p>
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <p>Email: <a href="mailto:info@techguruofficial.us">info@techguruofficial.us</a></p>
+          <p>Phone: <a href="tel:+17866369964">+1 (786) 636‑9964</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 TechGuru. All rights reserved.</p>
+      <p>
+        <a href="terms.html">Terms of Service</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/company/techguru" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/techguruofficial" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://www.facebook.com/techguruofficial" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Toggle Button -->
+  <button class="chat-toggle" onclick="toggleChatbox()" aria-label="Open or close chat">
+    <!-- Display the assistant avatar for the toggle button -->
+    <img src="images/chat-avatar.png" alt="TechGuru Assistant" class="chat-toggle-avatar" />
+  </button>
+  <!-- Chat Modal -->
+  <div class="chatbox" id="chatbox" role="dialog" aria-modal="true" aria-hidden="true" tabindex="-1">
+    <div class="chatbox-header">
+      <!-- Use a chat bubble icon in place of the assistant avatar -->
+      <span class="chatbox-bot-avatar">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+      </span>
+      <span class="chatbox-title">TechGuru Chat</span>
+      <button type="button" class="chatbox-close" onclick="toggleChatbox()" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="chatbox-body" id="chatbox-body" tabindex="0" aria-live="polite">
+      <p>Hello! Need help? Send us a message using the contact form above.</p>
+    </div>
+    <form class="chatbox-form" id="chatbox-form" autocomplete="off">
+      <input type="text" id="chatbox-input" placeholder="Type a message..." aria-label="Type your message here" />
+      <button type="submit" aria-label="Send message">Send</button>
+    </form>
+  </div>
+
+  <!-- Persist saved theme on page load -->
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
+
+  <!-- Hero Slider Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroSlides = document.querySelectorAll('.hero-slide');
+      let heroIndex = 0;
+      function showHeroSlide(i) {
+        heroSlides.forEach((slide, idx) => {
+          slide.classList.remove('active');
+          if (idx === i) {
+            slide.classList.add('active');
+          }
+        });
+      }
+      if (heroSlides.length > 0) {
+        showHeroSlide(heroIndex);
+        setInterval(() => {
+          heroIndex = (heroIndex + 1) % heroSlides.length;
+          showHeroSlide(heroIndex);
+        }, 7000);
+      }
+    });
+  </script>
+  <!-- Main scripts -->
+  <!-- Load scripts from the live site to avoid file:// restrictions -->
+  <script src="https://www.techguruofficial.us/js/main.js" defer></script>
+  <script src="https://www.techguruofficial.us/js/chat.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js" defer></script>
+  <!-- Override particles.js speed after it loads -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function adjustParticleSpeed() {
+        if (window.pJSDom && window.pJSDom.length > 0) {
+          // Lower the move speed to slow down the background particles
+          pJSDom[0].pJS.particles.move.speed = 0.5;
+        }
+      }
+      // Poll until particles.js has initialised
+      var checkInterval = setInterval(function() {
+        if (window.pJSDom && window.pJSDom.length > 0 && pJSDom[0].pJS) {
+          adjustParticleSpeed();
+          clearInterval(checkInterval);
+        }
+      }, 200);
+    });
+  </script>
+
+  <!-- Testimonial Carousel Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.testimonial-slide');
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          // Remove any previous state classes
+          slide.classList.remove('active', 'prev');
+          // Assign the active class to the current slide
+          if (i === index) {
+            slide.classList.add('active');
+          }
+          // Mark the slide that was previously active so it can animate out to the left
+          else if (i === ((index - 1 + slides.length) % slides.length)) {
+            slide.classList.add('prev');
+          }
+        });
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      // Initialise the carousel
+      if (slides.length > 0) {
+        showSlide(currentSlide);
+        setInterval(nextSlide, 6000);
+      }
+    });
+  </script>
+</body>
+</html>
