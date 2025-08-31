@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
   const btn  = document.getElementById('theme-toggle');
   const icon = document.getElementById('theme-toggle-icon');
+  const nav  = document.getElementById('main-nav');
+  const burger = document.getElementById('hamburger');
 
   function setTheme(mode) {
     root.setAttribute('data-theme', mode);
@@ -22,6 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const next = (root.getAttribute('data-theme') || 'dark') === 'dark' ? 'light' : 'dark';
       setTheme(next);
+    });
+  }
+
+  if (nav && burger) {
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('open');
     });
   }
 });
