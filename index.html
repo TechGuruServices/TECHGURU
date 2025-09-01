@@ -206,6 +206,15 @@
       .chatbox { right: 12px; left: 12px; width: auto; bottom: 100px; }
       .chat-toggle { right: 16px; bottom: 16px; }
     }
+    .site-header{position:sticky;top:0;z-index:1000;background:rgba(10,12,24,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+    .site-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#29b3f0,#d946ef,#29b3f0);background-size:200% 100%;animation:headerBar 8s linear infinite;opacity:.9;pointer-events:none}
+    .site-header.scrolled::after{opacity:0;transform:scaleX(.9);transition:opacity .25s ease,transform .25s ease}
+    @keyframes headerBar{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+    #backToTop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border:0;border-radius:12px;background:rgba(13,16,30,.7);color:#e5e7eb;font-size:20px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);cursor:pointer;z-index:1000;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,background .2s ease}
+    #backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}
+    #backToTop:hover{background:rgba(13,16,30,.9)}
+    @media (prefers-reduced-motion:reduce){.site-header::after{animation:none}#backToTop,.site-header.scrolled::after{transition:none}}
   </style>
 </head>
 <body>
@@ -483,5 +492,7 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
         });
       })();
     </script>
+    <button id="backToTop" aria-label="Back to top">↑</button>
+    <script>(function(){const h=document.querySelector('.site-header');const b=document.getElementById('backToTop');function s(){const sc=window.scrollY>10;h&&h.classList.toggle('scrolled',sc);const show=window.scrollY>400;b&&b.classList.toggle('show',show)}window.addEventListener('scroll',s,{passive:true});s();b&&b.addEventListener('click',()=>{const r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'})});})();</script>
   </body>
 </html>

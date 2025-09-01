@@ -30,7 +30,7 @@ body {
   padding: 2rem 0;
 }
 
-header.site-header {
+.site-header {
   position: sticky;
   top: 0;
   background: rgba(12, 12, 40, 0.9);
