@@ -101,12 +101,12 @@ body {
 
 .hero-content h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 5s linear infinite,
+  animation: gradientShift 6s linear infinite,
              fadeCycle 10s ease-in-out infinite;
 }
 
@@ -190,6 +190,48 @@ body {
 
 .services {
   padding: 4rem 0;
+}
+/* Neon gradient border for service cards */
+.service-card {
+  position: relative;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: rgba(20, 20, 20, 0.85);
+  color: inherit;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Animated gradient border */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px; /* extends slightly outside */
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(
+    270deg,
+    #ff00ff,
+    #29b3f0,
+    #00ffcc,
+    #ffcc00,
+    #ff00ff
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Animation for slow gradient flow */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .services-grid {
@@ -446,3 +488,4 @@ footer.footer a {
 [data-theme="light"] .chatbox-close {
   color: var(--text-color);
 }
+
