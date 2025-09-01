@@ -76,109 +76,134 @@
     .testimonial-author{font-weight:500}
     .testimonial-avatar{margin-bottom:.75rem;display:flex;align-items:center;justify-content:flex-start}
     .testimonial-avatar i{font-size:40px;color:#29b3f0}
-    .chat-toggle{
-position:fixed;
-right:20px;
-bottom:20px;
-z-index:10000;
-background:none!important;
-border:none!important;
-padding:0;
-cursor:pointer;
-}
-.chat-toggle-avatar{
-width:72px;
-height:72px;
-object-fit:contain;
-display:block;
-border-radius:0;
-box-shadow:none!important;
-background:none!important;
-}
+    .chat-toggle {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 10000;
+      background: none !important;
+      border: none !important;
+      padding: 0;
+      cursor: pointer;
+      animation: chatFloat 3s ease-in-out infinite;
+    }
 
-/* Chat box panel */
-.tg-chatbox{
-position:fixed;
-right:20px;
-bottom:110px; /* sits above the toggle */
-width:340px;
-max-height:520px;
-display:flex;
-flex-direction:column;
-background:rgba(13,16,30,.95);
-border:1px solid rgba(255,255,255,.08);
-border-radius:14px;
-box-shadow:0 20px 40px rgba(0,0,0,.45);
-overflow:hidden;
-z-index:10000;
+    @keyframes chatFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
 
-/* hidden by default */
-opacity:0;
-transform:translateY(12px);
-pointer-events:none;
-transition:opacity .2s ease, transform .2s ease;
-}
-.tg-chatbox.open{
-opacity:1;
-transform:translateY(0);
-pointer-events:auto;
-}
+    .chat-toggle-avatar {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+      box-shadow: none !important;
+      background: none !important;
+    }
 
-.tg-chatbox-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:10px 12px;
-background:linear-gradient(90deg, rgba(41,179,240,.18), rgba(217,70,239,.18));
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-.tg-chatbox-close{
-background:none;
-border:none;
-color:#e5e7eb;
-font-size:20px;
-line-height:1;
-cursor:pointer;
-}
+    .chatbox {
+      position: fixed;
+      right: 20px;
+      bottom: 110px; /* sits above the toggle */
+      width: 340px;
+      max-height: 520px;
+      display: flex;
+      flex-direction: column;
+      background: rgba(13,16,30,.95);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.45);
+      overflow: hidden;
+      z-index: 10000;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
 
-.tg-chatbox-body{
-padding:12px;
-color:#cbd5e1;
-overflow:auto;
-}
+    .chatbox.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
 
-.tg-chatbox-input{
-display:flex;
-gap:8px;
-padding:12px;
-border-top:1px solid rgba(255,255,255,.06);
-background:rgba(10,12,24,.9);
-}
-.tg-chatbox-input input{
-flex:1;
-height:38px;
-padding:0 10px;
-background:#0f1323;
-color:#e5e7eb;
-border:1px solid rgba(255,255,255,.08);
-border-radius:8px;
-}
-.tg-chatbox-input button{
-height:38px;
-padding:0 12px;
-border-radius:8px;
-border:0;
-font-weight:700;
-color:#0b1220;
-background:linear-gradient(90deg, #29b3f0, #d946ef);
-cursor:pointer;
-}
+    .chatbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: linear-gradient(90deg, rgba(41,179,240,.18), rgba(217,70,239,.18));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
 
-/* Mobile adjustments */
-@media (max-width: 560px){
-.tg-chatbox{ right:12px; left:12px; width:auto; bottom:100px; }
-.chat-toggle{ right:16px; bottom:16px; }
-}
+    .chatbox-close {
+      background: none;
+      border: none;
+      color: #e5e7eb;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .chatbox-bot-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: #29b3f0;
+    }
+
+    .chatbox-bot-avatar i {
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .chatbox-body {
+      padding: 12px;
+      color: #cbd5e1;
+      overflow: auto;
+    }
+
+    .chatbox-input {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: rgba(10,12,24,.9);
+    }
+
+    .chatbox-input input {
+      flex: 1;
+      height: 38px;
+      padding: 0 10px;
+      background: #0f1323;
+      color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 8px;
+    }
+
+    .chatbox-input button {
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 0;
+      font-weight: 700;
+      color: #0b1220;
+      background: linear-gradient(90deg, #29b3f0, #d946ef);
+      cursor: pointer;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 560px) {
+      .chatbox { right: 12px; left: 12px; width: auto; bottom: 100px; }
+      .chat-toggle { right: 16px; bottom: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -373,18 +398,18 @@ cursor:pointer;
   </footer>
 
     <!-- Chat -->
-    <button class="chat-toggle" aria-label="Open or close chat" aria-expanded="false" aria-controls="tg-chatbox">
+    <button class="chat-toggle" aria-label="Open or close chat" aria-expanded="false" aria-controls="chatbox">
       <img src="images/chat-avatar.png" alt="" class="chat-toggle-avatar">
     </button>
-    <div id="tg-chatbox" class="tg-chatbox" role="dialog" aria-label="TechGuru Chat" aria-hidden="true">
-      <div class="tg-chatbox-header">
+    <div id="chatbox" class="chatbox" role="dialog" aria-label="TechGuru Chat" aria-hidden="true">
+      <div class="chatbox-header">
         <strong>TechGuru Chat</strong>
-        <button type="button" class="tg-chatbox-close" aria-label="Close chat">×</button>
+        <button type="button" class="chatbox-close" aria-label="Close chat">×</button>
       </div>
-      <div class="tg-chatbox-body">
+      <div class="chatbox-body">
         <p>Hello! Need help? Send us a message using the contact form above.</p>
       </div>
-      <form class="tg-chatbox-input" onsubmit="return false;">
+      <form class="chatbox-input" onsubmit="return false;">
         <input type="text" placeholder="Type a message…" />
         <button type="submit">Send</button>
       </form>
@@ -440,8 +465,8 @@ cursor:pointer;
     <script>
       (function(){
         const toggle = document.querySelector('.chat-toggle');
-        const box = document.getElementById('tg-chatbox');
-        const close = document.querySelector('.tg-chatbox-close');
+        const box = document.getElementById('chatbox');
+        const close = document.querySelector('.chatbox-close');
         if(!toggle || !box) return;
         function setOpen(open){
           box.classList.toggle('open', open);
