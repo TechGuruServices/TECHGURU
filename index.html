@@ -68,12 +68,6 @@
     .hero-benefits li{display:flex;align-items:center;gap:.5rem}
     .hero-benefits li i{color:#29b3f0;font-size:1.2rem}
 
-    .hero-rotating-headline{position:relative;display:inline-block;height:1.2em;font-size:clamp(2.8rem,7vw,5rem);line-height:1.1;font-weight:800}
-    .hero-rotating-headline .phrase{position:absolute;inset:0;opacity:0;transform:translateY(8px);animation:tgFadeRotate 16s infinite ease-in-out}
-    .hero-rotating-headline .phrase:nth-child(1){animation-delay:0s}
-    .hero-rotating-headline .phrase:nth-child(2){animation-delay:8s}
-    @keyframes tgFadeRotate{0%{opacity:0;transform:translateY(8px)}10%{opacity:1;transform:translateY(0)}40%{opacity:1;transform:translateY(0)}50%{opacity:0;transform:translateY(-6px)}100%{opacity:0;transform:translateY(-6px)}}
-
     .scroll-indicator{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);font-size:2rem;color:#29b3f0;animation:scrollBounce 2s infinite}
     @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}}
 
@@ -126,15 +120,12 @@
       </div>
       <div class="container">
         <div class="hero-content">
-          <h1 class="hero-rotating-headline" aria-live="polite">
-            <span class="phrase">Streamline. Automate. Elevate.</span>
-            <span class="phrase">Optimize. Deploy. Scale Up.</span>
-          </h1>
+          <h1>PACK. OPTIMIZE. DEPLOY. SCALE UP.</h1>
           <p class="subtitle">Your <strong class="typewriter">one-man army</strong><br>for <strong id="word-carousel">scalability</strong>.</p>
           <ul class="hero-benefits">
-            <li><i class="fas fa-chart-line" aria-hidden="true"></i> Optimized for scale</li>
+            <li><i class="fas fa-rocket" aria-hidden="true"></i> Rapid deployment &amp; scalability</li>
             <li><i class="fas fa-cogs" aria-hidden="true"></i> Automated workflows</li>
-            <li><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Peak performance reliability</li>
+            <li><i class="fas fa-shield-alt" aria-hidden="true"></i> Robust security &amp; compliance</li>
           </ul>
           <div class="cta-buttons">
             <a href="#contact" class="btn btn-primary">Launch My AI Assistant</a>
