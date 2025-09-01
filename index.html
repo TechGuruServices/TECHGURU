@@ -1,26 +1,32 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO -->
+
   <meta name="description" content="TechGuru Services - Scalable Cloud, DevOps, AI, Automation solutions for startups." />
   <meta name="keywords" content="TechGuru, cloud, DevOps, AI, automation, startup tech solutions" />
   <meta name="robots" content="index, follow" />
 
   <!-- Icons -->
+
   <link rel="icon" href="custom-icon.png" sizes="any" />
 
   <title>TechGuru | Pack. Optimize. Deploy. Scale Up.</title>
 
   <!-- Styles (relative for GitHub Pages / Cloudflare) -->
+
   <link rel="stylesheet" href="main.css" />
 
   <!-- Font Awesome -->
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
   <!-- Social -->
+
   <meta property="og:title" content="TechGuru | Pack. Optimize. Deploy. Scale Up." />
   <meta property="og:description" content="TechGuru Services - Scalable Cloud, DevOps, AI, Automation solutions for startups." />
   <meta property="og:image" content="techguru-logo-full.png" />
@@ -28,8 +34,8 @@
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Page-local styles that augment main.css (safe to keep) -->
-  <style>
 
+  <style>
     #theme-toggle{position:relative;width:60px;height:30px;border-radius:15px;border:2px solid #22d3ee;background:var(--card-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden}
     #theme-toggle-icon{display:none}
     #theme-toggle::before{content:'';position:absolute;top:2px;left:2px;width:26px;height:26px;border-radius:50%;background:#22d3ee;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .35s ease,background .35s ease}
@@ -40,7 +46,7 @@
     .site-header .navbar-container{min-height:100px}
     .logo-container{display:flex;align-items:center;gap:8px;background:transparent!important;padding:0!important}
     .logo-img{width:60px;height:60px;background:transparent!important;border:none!important;border-radius:0!important;padding:0!important;object-fit:contain}
-      .logo-icon{width:clamp(50px,10vw,80px);height:clamp(50px,10vw,80px);background-image:url('nav-icon-new.png');background-size:contain;background-repeat:no-repeat;background-position:center}
+    .logo-icon{width:clamp(50px,10vw,80px);height:clamp(50px,10vw,80px);background-image:url('nav-icon-new.png');background-size:contain;background-repeat:no-repeat;background-position:center}
     .logo-text{font-size:1.4rem;font-weight:700;color:inherit}
     .logo-text-tech{color:#29b3f0}
     .logo-text-guru{color:#fff}
@@ -76,6 +82,7 @@
     .testimonial-author{font-weight:500}
     .testimonial-avatar{margin-bottom:.75rem;display:flex;align-items:center;justify-content:flex-start}
     .testimonial-avatar i{font-size:40px;color:#29b3f0}
+
     .chat-toggle {
       position: fixed;
       right: 20px;
@@ -93,16 +100,14 @@
       50% { transform: translateY(-4px); }
     }
 
-  .chat-toggle-avatar {
-  width: 140px;   /* increase width */
-  height: 140px;  /* increase height */
-  object-fit: contain;
-  display: block;
-  border-radius: 0;
-  box-shadow: none !important;
-  background: none !important;
-}
-
+    .chat-toggle-avatar {
+      width: 140px;
+      height: 140px;
+      object-fit: contain;
+      display: block;
+      border-radius: 0;
+      box-shadow: none !important;
+      background: none !important;
     }
 
     .chatbox {
@@ -206,17 +211,93 @@
       .chatbox { right: 12px; left: 12px; width: auto; bottom: 100px; }
       .chat-toggle { right: 16px; bottom: 16px; }
     }
-    .site-header{position:sticky;top:0;z-index:1000;background:rgba(10,12,24,.4);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06);transition:transform .25s ease}
-    .site-header.hide{transform:translateY(-100%);}
-    .site-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#29b3f0,#d946ef,#29b3f0);background-size:200% 100%;animation:headerBar 8s linear infinite;opacity:.9;pointer-events:none}
-    .site-header.scrolled::after{opacity:0;transform:scaleX(.9);transition:opacity .25s ease,transform .25s ease}
-    @keyframes headerBar{0%{background-position:0% 0}100%{background-position:200% 0}}
 
-    #backToTop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border:0;border-radius:12px;background:rgba(13,16,30,.7);color:#e5e7eb;font-size:20px;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35);cursor:pointer;z-index:1000;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .25s ease,transform .25s ease,background .2s ease}
-    #backToTop.show{opacity:1;transform:translateY(0);pointer-events:auto}
-    #backToTop:hover{background:rgba(13,16,30,.9)}
-    @media (prefers-reduced-motion:reduce){.site-header::after{animation:none}.site-header,#backToTop,.site-header.scrolled::after{transition:none}}
+    /* ===================== PATCHED HEADER / BACK-TO-TOP CSS ===================== */
+    /* Sticky header with glass background */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 12, 24, 0.4); /* was 0.6 on main; choose 0.4 for stronger glass effect */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      transition: transform 0.25s ease; /* from branch, enables slide-hide */
+    }
+
+    /* Slide header out when scrolling logic adds .hide */
+    .site-header.hide {
+      transform: translateY(-100%);
+    }
+
+    /* Animated gradient bar at the bottom edge of the header (from main) */
+    .site-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #29b3f0, #d946ef, #29b3f0);
+      background-size: 200% 100%;
+      animation: headerBar 8s linear infinite;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    /* Fade the bar when scrolled (from main) */
+    .site-header.scrolled::after {
+      opacity: 0;
+      transform: scaleX(0.9);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    @keyframes headerBar {
+      0%   { background-position: 0% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Back-to-top button */
+    #backToTop {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(13, 16, 30, 0.7);
+      color: #e5e7eb;
+      font-size: 20px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
+    }
+
+    #backToTop.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    #backToTop:hover {
+      background: rgba(13, 16, 30, 0.9);
+    }
+
+    /* Reduced-motion accessibility (merged) */
+    @media (prefers-reduced-motion: reduce) {
+      .site-header::after { animation: none; }
+      .site-header, #backToTop, .site-header.scrolled::after { transition: none; }
+    }
+    /* =================== END PATCHED HEADER / BACK-TO-TOP CSS =================== */
   </style>
+
 </head>
 <body>
   <!-- Header -->
@@ -269,134 +350,138 @@
       <div class="scroll-indicator" aria-label="Scroll down for more"><i class="fas fa-chevron-down" aria-hidden="true"></i></div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="services">
-      <div class="container">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-          <div class="service-card">
-              <img src="service-cloud.png" alt="Cloud Infrastructure Icon" class="service-icon-img" />
-            <h3>Cloud Infrastructure</h3>
-            <p>Scalable cloud solutions designed for modern businesses. From setup to optimization, we handle your infrastructure needs.</p>
-          </div>
-          <div class="service-card">
-              <img src="service-ai.png" alt="AI Automation Icon" class="service-icon-img" />
-            <h3>AI Automation</h3>
-            <p>Intelligent automation solutions that streamline your workflows and boost productivity with cutting-edge AI technology.</p>
-          </div>
-          <div class="service-card">
-              <img src="service-training.png" alt="DevOps Solutions Icon" class="service-icon-img" />
-            <h3>DevOps Solutions</h3>
-            <p>Complete DevOps pipeline setup and management to accelerate your development and deployment processes.</p>
-          </div>
-          <div class="service-card">
-              <img src="service-branding.png" alt="Custom Development Icon" class="service-icon-img" />
-            <h3>Custom Development</h3>
-            <p>Tailored software solutions built to meet your specific business requirements and technical specifications.</p>
-          </div>
-          <div class="service-card">
-              <img src="service-security.png" alt="Security &amp; Compliance Icon" class="service-icon-img" />
-            <h3>Security &amp; Compliance</h3>
-            <p>Comprehensive security audits and compliance solutions to protect your business and customer data.</p>
-          </div>
-          <div class="service-card">
-              <img src="service-training.png" alt="Performance Optimization Icon" class="service-icon-img" />
-            <h3>Performance Optimization</h3>
-            <p>System optimization and performance tuning to ensure your applications run at peak efficiency.</p>
-          </div>
-        </div>
+```
+<!-- Services -->
+<section id="services" class="services">
+  <div class="container">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+          <img src="service-cloud.png" alt="Cloud Infrastructure Icon" class="service-icon-img" />
+        <h3>Cloud Infrastructure</h3>
+        <p>Scalable cloud solutions designed for modern businesses. From setup to optimization, we handle your infrastructure needs.</p>
       </div>
-    </section>
+      <div class="service-card">
+          <img src="service-ai.png" alt="AI Automation Icon" class="service-icon-img" />
+        <h3>AI Automation</h3>
+        <p>Intelligent automation solutions that streamline your workflows and boost productivity with cutting-edge AI technology.</p>
+      </div>
+      <div class="service-card">
+          <img src="service-training.png" alt="DevOps Solutions Icon" class="service-icon-img" />
+        <h3>DevOps Solutions</h3>
+        <p>Complete DevOps pipeline setup and management to accelerate your development and deployment processes.</p>
+      </div>
+      <div class="service-card">
+          <img src="service-branding.png" alt="Custom Development Icon" class="service-icon-img" />
+        <h3>Custom Development</h3>
+        <p>Tailored software solutions built to meet your specific business requirements and technical specifications.</p>
+      </div>
+      <div class="service-card">
+          <img src="service-security.png" alt="Security &amp; Compliance Icon" class="service-icon-img" />
+        <h3>Security &amp; Compliance</h3>
+        <p>Comprehensive security audits and compliance solutions to protect your business and customer data.</p>
+      </div>
+      <div class="service-card">
+          <img src="service-training.png" alt="Performance Optimization Icon" class="service-icon-img" />
+        <h3>Performance Optimization</h3>
+        <p>System optimization and performance tuning to ensure your applications run at peak efficiency.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- About -->
-    <section id="about" class="about">
-      <div class="container">
-        <h2>About TechGuru</h2>
-        <p>Founded by Lucas Thompson, delivering enterprise-grade DevOps, AI &amp; cloud automation for startups and solo founders. We specialise in creating scalable, efficient solutions that grow with your business.</p>
-        <div class="stats-grid">
-          <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Projects Completed</div></div>
-          <div class="stat-item"><div class="stat-value">25+</div><div class="stat-label">Happy Clients</div></div>
-          <div class="stat-item"><div class="stat-value">99%</div><div class="stat-label">Uptime</div></div>
-          <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">Support</div></div>
-        </div>
-      </div>
-    </section>
+<!-- About -->
+<section id="about" class="about">
+  <div class="container">
+    <h2>About TechGuru</h2>
+    <p>Founded by Lucas Thompson, delivering enterprise-grade DevOps, AI &amp; cloud automation for startups and solo founders. We specialise in creating scalable, efficient solutions that grow with your business.</p>
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-value">50+</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-item"><div class="stat-value">25+</div><div class="stat-label">Happy Clients</div></div>
+      <div class="stat-item"><div class="stat-value">99%</div><div class="stat-label">Uptime</div></div>
+      <div class="stat-item"><div class="stat-value">24/7</div><div class="stat-label">Support</div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-      <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-container">
-          <div class="faq-item">
-            <div class="faq-question"><span>What services do you offer?</span><i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>We offer AI automation, cloud infrastructure, DevOps solutions and custom software development tailored for startups and small businesses.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question"><span>How quickly can you start a project?</span><i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>Most projects can be started within 24–48 hours. We pride ourselves on quick turnaround times and efficient delivery.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question"><span>Do you offer ongoing support?</span><i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>Yes, we offer comprehensive support and maintenance packages to ensure your systems run smoothly and continue to scale.</p></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question"><span>What's your pricing model?</span><i class="fas fa-chevron-down"></i></div>
-            <div class="faq-answer"><p>We offer flexible pricing based on project scope and requirements. Contact us for a personalised quote that fits your budget.</p></div>
-          </div>
-        </div>
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question"><span>What services do you offer?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>We offer AI automation, cloud infrastructure, DevOps solutions and custom software development tailored for startups and small businesses.</p></div>
       </div>
-    </section>
+      <div class="faq-item">
+        <div class="faq-question"><span>How quickly can you start a project?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Most projects can be started within 24–48 hours. We pride ourselves on quick turnaround times and efficient delivery.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>Do you offer ongoing support?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>Yes, we offer comprehensive support and maintenance packages to ensure your systems run smoothly and continue to scale.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question"><span>What's your pricing model?</span><i class="fas fa-chevron-down"></i></div>
+        <div class="faq-answer"><p>We offer flexible pricing based on project scope and requirements. Contact us for a personalised quote that fits your budget.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-      <div class="container">
-        <h2>What Our Clients Say About Us</h2>
-        <div class="testimonial-carousel">
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
-              <p>"TechGuru transformed our entire infrastructure. The AI automation solutions have saved us countless hours and improved our efficiency dramatically."</p>
-              <div class="testimonial-author"><strong>Sarah Johnson</strong><br /><span>CEO, InnovateTech</span></div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
-              <p>"Lucas's expertise in DevOps and cloud solutions helped us scale from startup to enterprise level. Highly recommended for any growing business."</p>
-              <div class="testimonial-author"><strong>Michael Chen</strong><br /><span>CTO, ScaleUp Solutions</span></div>
-            </div>
-          </div>
-          <div class="testimonial-slide">
-            <div class="testimonial-card">
-              <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
-              <p>"The custom development work was exceptional. They understood our needs perfectly and delivered beyond our expectations."</p>
-              <div class="testimonial-author"><strong>Emily Rodriguez</strong><br /><span>Founder, TechStart</span></div>
-            </div>
-          </div>
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2>What Our Clients Say About Us</h2>
+    <div class="testimonial-carousel">
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
+          <p>"TechGuru transformed our entire infrastructure. The AI automation solutions have saved us countless hours and improved our efficiency dramatically."</p>
+          <div class="testimonial-author"><strong>Sarah Johnson</strong><br /><span>CEO, InnovateTech</span></div>
         </div>
       </div>
-    </section>
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
+          <p>"Lucas's expertise in DevOps and cloud solutions helped us scale from startup to enterprise level. Highly recommended for any growing business."</p>
+          <div class="testimonial-author"><strong>Michael Chen</strong><br /><span>CTO, ScaleUp Solutions</span></div>
+        </div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-card">
+          <div class="testimonial-avatar"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
+          <p>"The custom development work was exceptional. They understood our needs perfectly and delivered beyond our expectations."</p>
+          <div class="testimonial-author"><strong>Emily Rodriguez</strong><br /><span>Founder, TechStart</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <h2>Get In Touch</h2>
-        <p>Ready to transform your business? Let's discuss your project.</p>
-        <form id="contact-form" class="contact-form">
-          <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required autocomplete="name" /></div>
-          <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email" /></div>
-          <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-        <div class="contact-info">
-          <p>Email: <a href="mailto:info@techguruofficial.us">info@techguruofficial.us</a></p>
-          <p>Phone: <a href="tel:+17866369964">+1 (786) 636-9964</a></p>
-        </div>
-      </div>
-    </section>
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="container">
+    <h2>Get In Touch</h2>
+    <p>Ready to transform your business? Let's discuss your project.</p>
+    <form id="contact-form" class="contact-form">
+      <div class="form-group"><label for="name">Name</label><input type="text" id="name" name="name" required autocomplete="name" /></div>
+      <div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" required autocomplete="email" /></div>
+      <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" rows="5" required></textarea></div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:info@techguruofficial.us">info@techguruofficial.us</a></p>
+      <p>Phone: <a href="tel:+17866369964">+1 (786) 636-9964</a></p>
+    </div>
+  </div>
+</section>
+```
+
   </main>
 
   <!-- Footer -->
+
   <footer class="footer">
     <div class="container">
       <p>&copy; 2025 TechGuru. All rights reserved.</p>
@@ -409,31 +494,34 @@
     </div>
   </footer>
 
-    <!-- Chat -->
-    <button class="chat-toggle" aria-label="Open or close chat" aria-expanded="false" aria-controls="chatbox">
-      <img src="./chat-avatar.png" width="72" height="72" class="chat-toggle-avatar" alt="Open chat">
-    </button>
-    <div id="chatbox" class="chatbox" role="dialog" aria-label="TechGuru Chat" aria-hidden="true">
-      <div class="chatbox-header">
-        <strong>💡TECHGURU AI Assistant</strong>
-        <button type="button" class="chatbox-close" aria-label="Close chat">×</button>
-      </div>
-      <div class="chatbox-body">
-        <p>👋 Hi, I’m your TechGuru AI Assistant.
-I can help you streamline, automate, and scale your workflows ― let’s get started!</p>
-      </div>
-      <form class="chatbox-input" onsubmit="return false;">
-        <input type="text" placeholder="Type a message…" />
-        <button type="submit">Send</button>
-      </form>
+  <!-- Chat -->
+
+  <button class="chat-toggle" aria-label="Open or close chat" aria-expanded="false" aria-controls="chatbox">
+    <img src="./chat-avatar.png" width="72" height="72" class="chat-toggle-avatar" alt="Open chat">
+  </button>
+  <div id="chatbox" class="chatbox" role="dialog" aria-label="TechGuru Chat" aria-hidden="true">
+    <div class="chatbox-header">
+      <strong>💡TECHGURU AI Assistant</strong>
+      <button type="button" class="chatbox-close" aria-label="Close chat">×</button>
     </div>
+    <div class="chatbox-body">
+      <p>👋 Hi, I’m your TechGuru AI Assistant.
+I can help you streamline, automate, and scale your workflows ― let’s get started!</p>
+    </div>
+    <form class="chatbox-input" onsubmit="return false;">
+      <input type="text" placeholder="Type a message…" />
+      <button type="submit">Send</button>
+    </form>
+  </div>
 
   <!-- Persist saved theme -->
+
   <script>
     (function(){const savedTheme=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',savedTheme);})();
   </script>
 
   <!-- Hero Slider -->
+
   <script>
     document.addEventListener('DOMContentLoaded',function(){
       const heroSlides=document.querySelectorAll('.hero-slide');
@@ -451,10 +539,13 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
   </script>
 
   <!-- Scripts (relative) -->
-    <script src="main.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js" defer></script>
+
+  <script src="main.js" defer></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js" defer></script>
 
   <!-- Slow particles slightly after init -->
+
   <script>
     document.addEventListener('DOMContentLoaded',function(){
       const tick=setInterval(function(){
@@ -467,33 +558,72 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
   </script>
 
   <!-- Testimonials carousel -->
-    <script>
-      document.addEventListener('DOMContentLoaded',function(){
-        const slides=document.querySelectorAll('.testimonial-slide');let cur=0;
-        function show(k){slides.forEach((s,i)=>{s.classList.remove('active','prev');if(i===k)s.classList.add('active');else if(i===((k-1+slides.length)%slides.length))s.classList.add('prev');});}
-        if(slides.length){show(cur);setInterval(()=>{cur=(cur+1)%slides.length;show(cur);},6000);}
-      });
-    </script>
 
-    <script>
-      (function(){
-        const toggle = document.querySelector('.chat-toggle');
-        const box = document.getElementById('chatbox');
-        const close = document.querySelector('.chatbox-close');
-        if(!toggle || !box) return;
-        function setOpen(open){
-          box.classList.toggle('open', open);
-          box.setAttribute('aria-hidden', String(!open));
-          toggle.setAttribute('aria-expanded', String(open));
+  <script>
+    document.addEventListener('DOMContentLoaded',function(){
+      const slides=document.querySelectorAll('.testimonial-slide');let cur=0;
+      function show(k){slides.forEach((s,i)=>{s.classList.remove('active','prev');if(i===k)s.classList.add('active');else if(i===((k-1+slides.length)%slides.length))s.classList.add('prev');});}
+      if(slides.length){show(cur);setInterval(()=>{cur=(cur+1)%slides.length;show(cur);},6000);}
+    });
+  </script>
+
+  <!-- Chat open/close -->
+
+  <script>
+    (function(){
+      const toggle = document.querySelector('.chat-toggle');
+      const box = document.getElementById('chatbox');
+      const close = document.querySelector('.chatbox-close');
+      if(!toggle || !box) return;
+      function setOpen(open){
+        box.classList.toggle('open', open);
+        box.setAttribute('aria-hidden', String(!open));
+        toggle.setAttribute('aria-expanded', String(open));
+      }
+      toggle.addEventListener('click', () => setOpen(!box.classList.contains('open')));
+      close && close.addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
+
+  <!-- Back to top + header hide-on-scroll (resolved script) -->
+
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+    (function(){
+      const h = document.querySelector('.site-header');
+      const b = document.getElementById('backToTop');
+      let last = window.scrollY;
+
+      function onScroll(){
+        const y = window.scrollY;
+        const scrolled = y > 10;
+        if (h) h.classList.toggle('scrolled', scrolled);
+
+        const show = y > 400;
+        if (b) b.classList.toggle('show', show);
+
+        if (h) {
+          const hide = y > last && y > 80;
+          h.classList.toggle('hide', hide);
         }
-        toggle.addEventListener('click', () => setOpen(!box.classList.contains('open')));
-        close && close.addEventListener('click', () => setOpen(false));
-        document.addEventListener('keydown', (e) => {
-          if(e.key === 'Escape') setOpen(false);
+        last = y;
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      if (b) {
+        b.addEventListener('click', () => {
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
         });
-      })();
-    </script>
-    <button id="backToTop" aria-label="Back to top">↑</button>
-    <script>(function(){const h=document.querySelector('.site-header');const b=document.getElementById('backToTop');let l=window.scrollY;function s(){const y=window.scrollY;const sc=y>10;h&&h.classList.toggle('scrolled',sc);const show=y>400;b&&b.classList.toggle('show',show);if(h){const hide=y>l&&y>80;h.classList.toggle('hide',hide);}l=y;}window.addEventListener('scroll',s,{passive:true});s();b&&b.addEventListener('click',()=>{const r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;window.scrollTo({top:0,behavior:r?'auto':'smooth'})});})();</script>
-  </body>
+      }
+    })();
+  </script>
+
+</body>
 </html>
