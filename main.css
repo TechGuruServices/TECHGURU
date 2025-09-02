@@ -40,6 +40,29 @@ body {
   transition: transform 0.25s ease;
 }
 
+/* Animated gradient border for navbar header */
+.site-header {
+  position: relative;
+  z-index: 10;
+}
+
+.site-header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px; /* Adjust thickness as needed */
+  background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
+  background-size: 300% 100%;
+  animation: gradientShift 6s linear infinite;
+  border-radius: 2px;
+  /* Compatibility for mask and background-clip if needed */
+  -webkit-mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
+  mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
+}
+
 .site-header.hide {
   transform: translateY(-100%);
 }
@@ -105,7 +128,11 @@ body {
   background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
   background-size: 300% 100%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent; /* fallback for browsers that don't support text-fill-color */
+  -webkit-mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
+  mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
   animation: gradientShift 6s linear infinite,
              fadeCycle 10s ease-in-out infinite;
 }
@@ -198,7 +225,8 @@ body {
   padding: 1.5rem;
   background: rgba(20, 20, 20, 0.85);
   color: inherit;
-  z-index: 0;
+  overflow: hidden;
+  z-index: 1;
 }
 
 /* Animated gradient border */
@@ -218,8 +246,12 @@ body {
   );
   background-size: 400% 400%;
   animation: gradientShift 10s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   z-index: -1;
-  pointer-events: none;
 }
 
 /* Animation for slow gradient flow */
