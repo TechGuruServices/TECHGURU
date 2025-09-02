@@ -133,8 +133,7 @@ body {
   color: transparent; /* fallback for browsers that don't support text-fill-color */
   -webkit-mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
   mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  animation: gradientShift 6s linear infinite,
-             fadeCycle 10s ease-in-out infinite;
+  animation: gradientShift 6s linear infinite, fadeCycle 10s ease-in-out infinite;
 }
 
 @keyframes gradientShift {
@@ -219,30 +218,69 @@ body {
 .services {
   padding: 4rem 0;
 }
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
 
-/* Neon gradient border for service cards */
+/* =========================================================
+   Service Cards — Neon Gradient Border (with fallbacks)
+   ========================================================= */
+
+/* Base card styles (merged) */
 .service-card {
-  background: var(--card-bg);
   position: relative;
-  border-radius: 12px;
+  z-index: 0;              /* establish stacking context for pseudo-elements */
+  background: var(--card-bg);
   padding: 2rem;
+  border-radius: 12px;
   text-align: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s;
-  color: inherit;
-  overflow: hidden;
-  border: 2px solid transparent;
-  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
-    linear-gradient(270deg, #ff00ff, #29b3f0, #00ffcc, #ffcc00, #ff00ff);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  animation: gradientShift 10s ease infinite;
+  overflow: visible;       /* allow glow to show outside edges */
+}
+
+/* Ensure content stays above the decorative layers */
+.service-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Animated neon ring using mask-composite (WebKit/Blink) */
+@supports ((-webkit-mask: linear-gradient(#000 0 0)) or (mask: linear-gradient(#000 0 0))) {
+  .service-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;                    /* extend just outside the card edges */
+    border-radius: inherit;
+    background: linear-gradient(270deg, #ff00ff, #29b3f0, #00ffcc, #ffcc00, #ff00ff);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    /* Create a hollow ring by masking out the inner area */
+    padding: 2px;                   /* ring thickness */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Fallback for browsers without mask-composite (e.g., Firefox)
+   Uses layered backgrounds to draw a gradient border */
+@supports not ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+  .service-card {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+      linear-gradient(270deg, #ff00ff, #29b3f0, #00ffcc, #ffcc00, #ff00ff) border-box;
+    background-size: auto, 400% 400%;
+    animation: serviceBorderFlow 10s ease infinite;
+  }
+
+  @keyframes serviceBorderFlow {
+    0%   { background-position: left top,    0% 50%; }
+    50%  { background-position: left top,  100% 50%; }
+    100% { background-position: left top,    0% 50%; }
+  }
 }
 
 .service-card:hover {
@@ -257,6 +295,17 @@ body {
 .service-card p {
   font-size: 0.95rem;
 }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* ===============================
+   Other Sections
+   =============================== */
 
 .about,
 .faq,
@@ -443,7 +492,7 @@ footer.footer a {
 [data-theme="light"] .service-card {
   background: var(--card-bg);
   color: var(--text-color);
-  border: 1px solid var(--border-color);
+  border-color: var(--border-color);
 }
 
 [data-theme="light"] .faq-question,
@@ -483,4 +532,3 @@ footer.footer a {
 [data-theme="light"] .chatbox-close {
   color: var(--text-color);
 }
-
