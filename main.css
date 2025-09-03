@@ -8,16 +8,8 @@
   --subtext-color: #94a3b8;
   --accent-blue: #29b3f0;
   --max-width: 1100px;
-}
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-/* -------- Header / Logo tuning (paste near top of main.css) -------- */
-/* Tweak these values to change size / width / transparency / speed */
-:root {
+  /* header/branding tuning */
   /* header width of inner content (controls how "wide" the nav feels) */
   --header-inner-max-width: 1100px; /* reduce to 900px or 800px to make nav feel narrower */
   --header-horizontal-padding: 1rem;
@@ -36,13 +28,25 @@
   --header-transition-speed: 0.25s;
 }
 
-/* make navbar content centered and narrower than full width */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   Header / Logo fixes (injection)
+   - ensures .logo-icon background-image displays
+   - ensures <img class="logo"> variants remain visible
+   - prevents accidental hiding from other CSS/JS
+   ================================================== */
+
+/* Center and narrow header content */
 .site-header {
   background: rgba(12,12,40,var(--header-bg-alpha)); /* change transparency here */
   transition: transform var(--header-transition-speed) ease, background 0.25s ease;
 }
 
-/* limit the inner navbar width and center it */
 .site-header .navbar-container {
   width: 90%;
   max-width: var(--header-inner-max-width); /* adjust this to make nav "narrower" */
@@ -52,27 +56,56 @@
   min-height: 72px; /* control header height */
 }
 
-/* logo sizing - top-left */
+/* Ensure logo block that uses background-image is visible and sized */
+.site-header .logo-icon,
+.logo-icon,
 .logo,
 .logo-img,
-.logo-icon,
 .logo-container img {
-  width: var(--logo-width) !important;  /* change logo size here */
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 12 !important; /* keep it above header pseudo-elements */
+  width: var(--logo-width) !important;
+  max-width: var(--logo-width) !important;
   max-height: var(--logo-max-height) !important;
   height: auto !important;
   object-fit: contain !important;
-  display: block;
 }
 
-/* If you want the icon and text split logo (logo-text-tech / logo-text-guru) to scale nicely */
-.logo-container { gap: 10px; align-items: center; }
-
-/* control header bottom gradient animation speed */
-.site-header::after {
-  height: 4px;
-  background-size: 300% 100%;
-  animation: gradientShift var(--header-gradient-speed) linear infinite;
+/* background-image fallback: try both root absolute and relative path (layered) */
+.site-header .logo-icon,
+.logo-icon {
+  /* Layered backgrounds — if one loads the other still works as fallback layering */
+  background-image:
+    url('/images/nav-icon-techguru.png'),
+    url('images/nav-icon-techguru.png');
+  background-repeat: no-repeat, no-repeat !important;
+  background-position: center, center !important;
+  background-size: contain, contain !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  width: var(--logo-width) !important;
+  max-height: var(--logo-max-height) !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
 }
+
+/* Ensure <img class="logo"> works reliably if present (recommended) */
+.logo,
+.logo-img,
+.logo-container img {
+  width: auto !important;
+  max-width: var(--logo-width) !important;
+  max-height: var(--logo-max-height) !important;
+  height: auto !important;
+  display: inline-block !important;
+  object-fit: contain !important;
+  vertical-align: middle !important;
+}
+
+/* If you convert to <img> prefer this: <img src="/images/nav-icon-techguru.png" class="logo" alt="TechGuru"> */
 
 /* mobile adjustments: keep logo smaller on small screens */
 @media (max-width: 560px) {
@@ -86,6 +119,10 @@
     padding: 0 0.7rem;
   }
 }
+
+/* ===============================
+   Rest of your original stylesheet
+   =============================== */
 
 body {
   background: var(--bg-gradient);
@@ -603,4 +640,3 @@ footer.footer a {
 [data-theme="light"] .chatbox-close {
   color: var(--text-color);
 }
-
