@@ -88,10 +88,17 @@ body {
 .hero {
   min-height: 90vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
+  text-align: left;
   position: relative;
+}
+
+.hero .container {
+  padding-top: 4rem;
+  text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content h1 {
@@ -103,6 +110,12 @@ body {
   -webkit-text-fill-color: transparent;
   animation: gradientShift 5s linear infinite,
              fadeCycle 10s ease-in-out infinite;
+}
+
+@media (max-width: 600px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
 }
 
 @keyframes gradientShift {
