@@ -15,6 +15,77 @@
   margin: 0;
   padding: 0;
 }
+/* -------- Header / Logo tuning (paste near top of main.css) -------- */
+/* Tweak these values to change size / width / transparency / speed */
+:root {
+  /* header width of inner content (controls how "wide" the nav feels) */
+  --header-inner-max-width: 1100px; /* reduce to 900px or 800px to make nav feel narrower */
+  --header-horizontal-padding: 1rem;
+
+  /* logo sizing */
+  --logo-width: clamp(110px, 12vw, 160px); /* clamp(min, responsive, max) */
+  --logo-max-height: 58px; /* ensures tall logos don't push header height */
+
+  /* header background transparency (0 = fully transparent, 1 = fully opaque) */
+  --header-bg-alpha: 0.40;
+
+  /* gradient animation duration for the header bottom strip (seconds) */
+  --header-gradient-speed: 6s;
+
+  /* header show/hide transform speed */
+  --header-transition-speed: 0.25s;
+}
+
+/* make navbar content centered and narrower than full width */
+.site-header {
+  background: rgba(12,12,40,var(--header-bg-alpha)); /* change transparency here */
+  transition: transform var(--header-transition-speed) ease, background 0.25s ease;
+}
+
+/* limit the inner navbar width and center it */
+.site-header .navbar-container {
+  width: 90%;
+  max-width: var(--header-inner-max-width); /* adjust this to make nav "narrower" */
+  margin: 0 auto;   /* centers it instead of full-bleed */
+  padding: 0 var(--header-horizontal-padding);
+  align-items: center;
+  min-height: 72px; /* control header height */
+}
+
+/* logo sizing - top-left */
+.logo,
+.logo-img,
+.logo-icon,
+.logo-container img {
+  width: var(--logo-width) !important;  /* change logo size here */
+  max-height: var(--logo-max-height) !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+/* If you want the icon and text split logo (logo-text-tech / logo-text-guru) to scale nicely */
+.logo-container { gap: 10px; align-items: center; }
+
+/* control header bottom gradient animation speed */
+.site-header::after {
+  height: 4px;
+  background-size: 300% 100%;
+  animation: gradientShift var(--header-gradient-speed) linear infinite;
+}
+
+/* mobile adjustments: keep logo smaller on small screens */
+@media (max-width: 560px) {
+  :root {
+    --logo-width: clamp(70px, 20vw, 100px);
+    --logo-max-height: 44px;
+    --header-inner-max-width: 100%; /* allow edge-to-edge on very small screens */
+  }
+
+  .site-header .navbar-container {
+    padding: 0 0.7rem;
+  }
+}
 
 body {
   background: var(--bg-gradient);
@@ -532,3 +603,4 @@ footer.footer a {
 [data-theme="light"] .chatbox-close {
   color: var(--text-color);
 }
+
