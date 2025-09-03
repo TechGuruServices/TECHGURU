@@ -74,16 +74,13 @@
   object-fit: contain !important;
 }
 
-/* background-image fallback: try both root absolute and relative path (layered) */
+/* logo icon image */
 .site-header .logo-icon,
 .logo-icon {
-  /* Layered backgrounds — if one loads the other still works as fallback layering */
-  background-image:
-    url('/images/nav-icon-techguru.png'),
-    url('images/nav-icon-techguru.png');
-  background-repeat: no-repeat, no-repeat !important;
-  background-position: center, center !important;
-  background-size: contain, contain !important;
+  background-image: url('nav-icon-new.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   min-width: 48px !important;
   min-height: 48px !important;
   width: var(--logo-width) !important;
