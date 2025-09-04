@@ -98,13 +98,19 @@
       50% { transform: translateY(-4px); }
     }
 
+    /* ✅ FIX: Avatar image should be simple and visible */
     .chat-toggle-avatar {
-      width: 160px;
-      height: 160px;
+      width: 72px;
+      height: 72px;
       object-fit: contain;
       display: block;
       border-radius: 0;
-      
+      box-shadow: none !important;
+      background: none !important;
+    }
+
+    /* ✅ FIX: Panel styles belong to .chatbox, not the avatar */
+    .chatbox {
       position: fixed;
       right: 20px;
       bottom: 140px; /* sits above the toggle */
@@ -212,25 +218,19 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(10, 12, 24, 0.4); /* was 0.6 on main; choose 0.4 for stronger glass effect */
+      background: rgba(10, 12, 24, 0.4);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition: transform 0.25s ease; /* from branch, enables slide-hide */
+      transition: transform 0.25s ease;
     }
 
-    /* Slide header out when scrolling logic adds .hide */
-    .site-header.hide {
-      transform: translateY(-100%);
-    }
+    .site-header.hide { transform: translateY(-100%); }
 
-    /* Animated gradient bar at the bottom edge of the header (from main) */
     .site-header::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      left: 0; right: 0; bottom: 0;
       height: 3px;
       background: linear-gradient(90deg, #29b3f0, #d946ef, #29b3f0);
       background-size: 200% 100%;
@@ -239,19 +239,14 @@
       pointer-events: none;
     }
 
-    /* Fade the bar when scrolled (from main) */
     .site-header.scrolled::after {
       opacity: 0;
       transform: scaleX(0.9);
       transition: opacity 0.25s ease, transform 0.15s ease;
     }
 
-    @keyframes headerBar {
-      0%   { background-position: 0% 0; }
-      100% { background-position: 200% 0; }
-    }
+    @keyframes headerBar { 0%{background-position:0% 0} 100%{background-position:200% 0} }
 
-    /* Back-to-top button */
     #backToTop {
       position: fixed;
       right: 18px;
@@ -274,17 +269,10 @@
       transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease;
     }
 
-    #backToTop.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+    #backToTop.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-    #backToTop:hover {
-      background: rgba(13, 16, 30, 0.9);
-    }
+    #backToTop:hover { background: rgba(13, 16, 30, 0.9); }
 
-    /* Reduced-motion accessibility (merged) */
     @media (prefers-reduced-motion: reduce) {
       .site-header::after { animation: none; }
       .site-header, #backToTop, .site-header.scrolled::after { transition: none; }
@@ -510,7 +498,7 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
     </form>
   </div>
 
-  <!-- Back to top button (ID aligned with CSS/JS) -->
+  <!-- Back to top button -->
   <button id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <!-- Hero Slider -->
