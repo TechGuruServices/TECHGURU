@@ -33,7 +33,7 @@ body {
 }
 
 html, body {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
 h1, h2, h3 {
@@ -125,7 +125,7 @@ img {
 
 .theme-toggle {
   background: none;
-  border: 2px solid var(--accent-blue);
+  border: 3px solid var(--accent-blue);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -133,7 +133,7 @@ img {
   align-items: center;
   justify-content: center;
   color: var(--accent-blue);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.3s ease;
 }
 
 .theme-toggle:hover,
@@ -473,4 +473,5 @@ img {
   font-size: 1.4rem;
   color: var(--accent-blue, #29b3f0);
 }
+
 
