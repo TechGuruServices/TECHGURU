@@ -297,17 +297,14 @@ img {
   text-align: center;
   position: relative;
   border: 2px solid transparent;
-  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
-    linear-gradient(90deg, #29b3f0, #d946ef);
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  background-color: var(--card-bg);
+  border-image: linear-gradient(90deg, #29b3f0, #d946ef) 1;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  background-image: linear-gradient(var(--card-bg-hover), var(--card-bg-hover)),
-    linear-gradient(90deg, #29b3f0, #d946ef);
+  background-color: var(--card-bg-hover);
 }
 
 .service-card img,
