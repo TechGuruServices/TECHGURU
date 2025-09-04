@@ -567,6 +567,18 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
     });
   </script>
 
+  <!-- FAQ accordion -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.faq-question').forEach(function(q){
+        q.addEventListener('click', function(){
+          const item = q.parentElement;
+          item.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+
   <!-- Chat open/close -->
 
   <script>

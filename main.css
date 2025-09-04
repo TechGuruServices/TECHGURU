@@ -472,6 +472,11 @@ body {
 
 .faq-question i {
   color: var(--accent-blue);
+  transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(180deg);
 }
 
 .testimonial-carousel {
