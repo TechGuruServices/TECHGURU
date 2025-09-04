@@ -50,13 +50,19 @@ img {
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.navbar-container {
-  max-width: var(--max-width);
-  margin: 0 auto;
+/* === Nav logo alignment fix === */
+.logo-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
+  gap: 6px;          /* reduce spacing between logo + text */
+}
+
+.logo-container img,
+.logo-icon {
+  margin: 0;         /* remove any unintended margin */
+  padding: 0;        /* remove extra padding */
+}
+
 }
 
 .main-nav {
@@ -286,3 +292,4 @@ img {
   font-size: 1.4rem;
   color: var(--accent-blue, #29b3f0);
 }
+
