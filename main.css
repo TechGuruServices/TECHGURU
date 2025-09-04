@@ -8,24 +8,6 @@
   --subtext-color: #94a3b8;
   --accent-blue: #29b3f0;
   --max-width: 1100px;
-
-  /* header/branding tuning */
-  /* header width of inner content (controls how "wide" the nav feels) */
-  --header-inner-max-width: 1100px; /* reduce to 900px or 800px to make nav feel narrower */
-  --header-horizontal-padding: 1rem;
-
-  /* logo sizing */
-  --logo-width: clamp(110px, 12vw, 160px); /* clamp(min, responsive, max) */
-  --logo-max-height: 58px; /* ensures tall logos don't push header height */
-
-  /* header background transparency (0 = fully transparent, 1 = fully opaque) */
-  --header-bg-alpha: 0.40;
-
-  /* gradient animation duration for the header bottom strip (seconds) */
-  --header-gradient-speed: 6s;
-
-  /* header show/hide transform speed */
-  --header-transition-speed: 0.25s;
 }
 
 * {
@@ -34,93 +16,6 @@
   padding: 0;
 }
 
-/* ===============================
-   Header / Logo fixes (injection)
-   - ensures .logo-icon background-image displays
-   - ensures <img class="logo"> variants remain visible
-   - prevents accidental hiding from other CSS/JS
-   ================================================== */
-
-/* Center and narrow header content */
-.site-header {
-  background: rgba(12,12,40,var(--header-bg-alpha)); /* change transparency here */
-  transition: transform var(--header-transition-speed) ease, background 0.25s ease;
-}
-
-.site-header .navbar-container {
-  width: 90%;
-  max-width: var(--header-inner-max-width); /* adjust this to make nav "narrower" */
-  margin: 0 auto;   /* centers it instead of full-bleed */
-  padding: 0 var(--header-horizontal-padding);
-  align-items: center;
-  min-height: 72px; /* control header height */
-}
-
-/* Ensure logo block that uses background-image is visible and sized */
-.site-header .logo-icon,
-.logo-icon,
-.logo,
-.logo-img,
-.logo-container img {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  position: relative !important;
-  z-index: 12 !important; /* keep it above header pseudo-elements */
-  width: var(--logo-width) !important;
-  max-width: var(--logo-width) !important;
-  max-height: var(--logo-max-height) !important;
-  height: auto !important;
-  object-fit: contain !important;
-}
-
-/* logo icon image */
-.site-header .logo-icon,
-.logo-icon {
-  background-image: url('nav-icon-new.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  min-width: 48px !important;
-  min-height: 48px !important;
-  width: var(--logo-width) !important;
-  max-height: var(--logo-max-height) !important;
-  display: inline-block !important;
-  vertical-align: middle !important;
-}
-
-/* Ensure <img class="logo"> works reliably if present (recommended) */
-.logo,
-.logo-img,
-.logo-container img {
-  width: auto !important;
-  max-width: var(--logo-width) !important;
-  max-height: var(--logo-max-height) !important;
-  height: auto !important;
-  display: inline-block !important;
-  object-fit: contain !important;
-  vertical-align: middle !important;
-}
-
-/* If you convert to <img> prefer this: <img src="/images/nav-icon-techguru.png" class="logo" alt="TechGuru"> */
-
-/* mobile adjustments: keep logo smaller on small screens */
-@media (max-width: 560px) {
-  :root {
-    --logo-width: clamp(70px, 20vw, 100px);
-    --logo-max-height: 44px;
-    --header-inner-max-width: 100%; /* allow edge-to-edge on very small screens */
-  }
-
-  .site-header .navbar-container {
-    padding: 0 0.7rem;
-  }
-}
-
-/* ===============================
-   Rest of your original stylesheet
-   =============================== */
-
 body {
   background: var(--bg-gradient);
   color: var(--text-color);
@@ -128,55 +23,40 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  width: 90%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 2rem 0;
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===============================
+   Navbar
+   =============================== */
 .site-header {
   position: sticky;
   top: 0;
-  background: rgba(12, 12, 40, 0.4);
-  backdrop-filter: blur(6px);
   z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  transition: transform 0.25s ease;
-}
-
-/* Animated gradient border for navbar header */
-.site-header {
-  position: relative;
-  z-index: 10;
-}
-
-.site-header::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 4px; /* Adjust thickness as needed */
-  background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  background-size: 300% 100%;
-  animation: gradientShift 6s linear infinite;
-  border-radius: 2px;
-  /* Compatibility for mask and background-clip if needed */
-  -webkit-mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-}
-
-.site-header.hide {
-  transform: translateY(-100%);
+  background: rgba(10, 12, 24, 0.4);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .navbar-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0.75rem 1rem;
 }
 
 .main-nav {
@@ -185,252 +65,97 @@ body {
 }
 
 .main-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
-.nav-controls {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.main-nav a:hover {
+  color: var(--accent-blue);
 }
 
 .btn-cta {
   background: var(--accent-blue);
   color: #fff;
   padding: 0.6rem 1.2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background 0.3s;
+  border-radius: 6px;
+  transition: background 0.3s ease;
 }
 
 .btn-cta:hover {
   background: #1b8dc4;
 }
 
-.hamburger {
-  display: none;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.5rem;
-}
-
+/* ===============================
+   Hero
+   =============================== */
 .hero {
-  min-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   position: relative;
+  text-align: center;
+  padding: 5rem 1rem;
 }
 
-.hero-content h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent; /* fallback for browsers that don't support text-fill-color */
-  -webkit-mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  mask-image: linear-gradient(90deg, #29b3f0, #d946ef, #f97316, #29b3f0);
-  animation: gradientShift 6s linear infinite, fadeCycle 10s ease-in-out infinite;
+.hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes fadeCycle {
-  0%, 40% { opacity: 1; }
-  50%, 90% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.hero-content .subtitle {
+.hero .subtitle {
   font-size: 1.2rem;
   margin-bottom: 2rem;
   color: var(--subtext-color);
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  line-height: 1.5;
-}
-
-.hero-content .subtitle strong {
-  color: var(--accent-blue);
-  font-weight: 600;
-}
-
-.typewriter {
-  display: inline-block;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid var(--accent-blue);
-  animation: typing 2s steps(12, end), blink 0.75s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--accent-blue); }
 }
 
 .cta-buttons {
   display: flex;
-  gap: 1rem;
   justify-content: center;
-  flex-wrap: wrap;
+  gap: 1rem;
 }
 
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  border: 1px solid var(--accent-blue);
-}
-
-.btn-primary {
-  background: var(--accent-blue);
-  color: #fff;
-  border-color: var(--accent-blue);
-}
-
-.btn-primary:hover {
-  background: #1b8dc4;
-  border-color: #1b8dc4;
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #fff;
-  border-color: #fff;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
+/* ===============================
+   Services
+   =============================== */
 .services {
-  padding: 4rem 0;
-}
-
-/* =========================================================
-   Service Cards — Neon Gradient Border (with fallbacks)
-   ========================================================= */
-
-/* Base card styles (merged) */
-.service-card {
-  position: relative;
-  z-index: 0;              /* establish stacking context for pseudo-elements */
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 4rem 1rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
-  overflow: visible;       /* allow glow to show outside edges */
-}
-
-/* Ensure content stays above the decorative layers */
-.service-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Animated neon ring using mask-composite (WebKit/Blink) */
-@supports ((-webkit-mask: linear-gradient(#000 0 0)) or (mask: linear-gradient(#000 0 0))) {
-  .service-card::before {
-    content: "";
-    position: absolute;
-    inset: -2px;                    /* extend just outside the card edges */
-    border-radius: inherit;
-    background: linear-gradient(270deg, #ff00ff, #29b3f0, #00ffcc, #ffcc00, #ff00ff);
-    background-size: 400% 400%;
-    animation: gradientShift 10s ease infinite;
-    /* Create a hollow ring by masking out the inner area */
-    padding: 2px;                   /* ring thickness */
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-            mask-composite: exclude;
-    pointer-events: none;
-    z-index: 0;
-  }
-}
-
-/* Fallback for browsers without mask-composite (e.g., Firefox)
-   Uses layered backgrounds to draw a gradient border */
-@supports not ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
-  .service-card {
-    border: 2px solid transparent;
-    background:
-      linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
-      linear-gradient(270deg, #ff00ff, #29b3f0, #00ffcc, #ffcc00, #ff00ff) border-box;
-    background-size: auto, 400% 400%;
-    animation: serviceBorderFlow 10s ease infinite;
-  }
-
-  @keyframes serviceBorderFlow {
-    0%   { background-position: left top,    0% 50%; }
-    50%  { background-position: left top,  100% 50%; }
-    100% { background-position: left top,    0% 50%; }
-  }
-}
-
-.service-card:hover {
-  transform: translateY(-4px);
-}
-
-.service-card h3 {
-  margin-bottom: 0.5rem;
-  color: var(--accent-blue);
-}
-
-.service-card p {
-  font-size: 0.95rem;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
-/* ===============================
-   Other Sections
-   =============================== */
+.service-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
 
-.about,
-.faq,
-.testimonials,
-.contact {
-  padding: 4rem 0;
+.service-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.service-card h3 {
+  margin-top: 1rem;
+  font-size: 1.3rem;
+}
+
+/* ===============================
+   About
+   =============================== */
+.about {
+  padding: 4rem 1rem;
+  text-align: center;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
   margin-top: 2rem;
-}
-
-.stat-item {
-  text-align: center;
-  background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
 }
 
 .stat-value {
@@ -443,6 +168,9 @@ body {
   font-size: 0.9rem;
 }
 
+/* ===============================
+   FAQ
+   =============================== */
 .faq-container {
   max-width: 800px;
   margin: 2rem auto;
@@ -472,13 +200,16 @@ body {
 
 .faq-question i {
   color: var(--accent-blue);
-  transition: transform 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .faq-item.active .faq-question i {
   transform: rotate(180deg);
 }
 
+/* ===============================
+   Testimonials
+   =============================== */
 .testimonial-carousel {
   margin-top: 2rem;
 }
@@ -487,6 +218,9 @@ body {
   background: var(--card-bg);
 }
 
+/* ===============================
+   Contact
+   =============================== */
 .contact-form {
   max-width: 600px;
   margin: 2rem auto;
@@ -503,142 +237,52 @@ body {
   padding: 0.75rem;
   border-radius: 6px;
   border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
-.form-group label {
-  margin-bottom: 0.5rem;
-}
-
-.contact-info {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.contact-info a {
-  color: var(--accent-blue);
-  text-decoration: none;
-}
-
-footer.footer {
-  background: rgba(12, 12, 40, 0.9);
-  padding: 2rem 0;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-footer.footer a {
-  color: var(--accent-blue);
-  text-decoration: none;
-  margin: 0 0.5rem;
-}
-
-.social-links {
-  margin-top: 1rem;
-}
-
-.social-links a {
-  margin: 0 0.5rem;
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-@media (max-width: 768px) {
-  .navbar-container {
-    flex-wrap: wrap;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  .main-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: rgba(12, 12, 40, 0.9);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-  }
-
-  .main-nav.open {
-    display: flex;
-  }
 }
 
 /* ===============================
-   Light Mode Overrides
+   Footer
    =============================== */
-[data-theme="light"] {
-  --bg-color: #f9fafb;         /* light gray background */
-  --card-bg: #ffffff;          /* white cards/sections */
-  --text-color: #0f172a;       /* near-black text */
-  --subtext-color: #374151;    /* muted gray text */
-  --accent-blue: #2563eb;      /* brand blue for links/buttons */
-  --accent-pink: #d946ef;      /* warm pink accent (toggle knob) */
-  --border-color: #e5e7eb;     /* light borders */
+.footer {
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
 }
 
-[data-theme="light"] body {
-  background: var(--bg-color);
-  color: var(--text-color);
+/* ===============================
+   Hero CTA Adjustments (injected)
+   =============================== */
+.hero .cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;              /* Increased spacing between buttons */
+  margin-top: 1.5rem;
 }
 
-[data-theme="light"] header.site-header,
-[data-theme="light"] footer.footer {
-  background: var(--card-bg);
-  color: var(--text-color);
-  border-bottom: 1px solid var(--border-color);
+.hero .cta-buttons .btn {
+  font-size: 1.05rem;       /* Slightly larger text */
+  font-weight: 600;         /* Stronger emphasis */
+  padding: 0.85rem 2rem;    /* Roomier buttons */
+  letter-spacing: 0.5px;    /* Improve readability */
+  text-transform: uppercase;
 }
 
-[data-theme="light"] .hero-content p {
-  color: var(--text-color);
-  text-shadow: none;
+.hero .subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--subtext-color, #94a3b8);
+  margin: 1rem 0;
+  text-align: center;
+  line-height: 1.6;
 }
 
-[data-theme="light"] .service-card {
-  background: var(--card-bg);
-  color: var(--text-color);
-  border-color: var(--border-color);
+.hero-benefits {
+  margin-top: 1.5rem;
+  gap: 2rem;                /* Spread out icons + text more */
+  font-size: 1.05rem;
 }
 
-[data-theme="light"] .faq-question,
-[data-theme="light"] .testimonial-card {
-  background: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-}
-
-[data-theme="light"] .btn.btn-primary {
-  background: var(--accent-blue);
-  border-color: var(--accent-blue);
-  color: #fff;
-}
-[data-theme="light"] .btn.btn-primary:hover {
-  background: #1d4ed8;
-}
-
-[data-theme="light"] .btn.btn-secondary {
-  background: var(--accent-pink);
-  border-color: var(--accent-pink);
-  color: #fff;
-}
-[data-theme="light"] .btn.btn-secondary:hover {
-  background: #c026d3;
-}
-
-/* Chatbox styling in light mode */
-[data-theme="light"] .chatbox {
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: var(--text-color);
-}
-[data-theme="light"] .chatbox-header {
-  background: rgba(255, 255, 255, 0.95) !important;
-  color: var(--text-color);
-}
-[data-theme="light"] .chatbox-close {
-  color: var(--text-color);
+.hero-benefits li i {
+  font-size: 1.4rem;
+  color: var(--accent-blue, #29b3f0);
 }
