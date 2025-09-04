@@ -211,18 +211,19 @@ img {
   margin-top: 2rem;
 }
 
- .service-card {
-  position: relative;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
-    linear-gradient(90deg, #29b3f0, #d946ef);
-  background-origin: border-box;
-  background-clip: padding-box, border-box; /* CHANGED from content-box to padding-box */
-  transition: transform 0.3s ease, background 0.3s ease;
+ /* ...other styles... */
+
+.services-grid {
+  display: grid;
+  /* ... */
 }
 
+/* OLD service-card styles */
+.service-card {
+  /* old styles here */
+}
+
+/* ...other styles... */
 .service-card:hover {
   transform: translateY(-6px);
   background-image: linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
