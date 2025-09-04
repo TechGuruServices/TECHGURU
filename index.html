@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <link rel="icon" type="image/x-icon" href="/path/to/custom-icon.ico">
+  <link rel="icon" type="image/x-icon" href="custom-icon.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -64,7 +64,7 @@
     .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 4s ease-in-out}
     .hero-slide.active{opacity:1}
 
-    .hero-benefits{list-style:none;padding:0;margin:1rem auto;display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;max-width:800px;font-size:1rem}
+    .hero-benefits{list-style:none;padding:0;margin:1rem 0;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:1.5rem;max-width:800px;font-size:1rem}
     .hero-benefits li{display:flex;align-items:center;gap:.5rem}
     .hero-benefits li i{color:#29b3f0;font-size:1.2rem}
 
@@ -114,7 +114,7 @@
     .chatbox {
       position: fixed;
       right: 20px;
-      bottom: 110px; /* sits above the toggle */
+      bottom: 140px; /* sits above the toggle */
       width: 340px;
       max-height: 520px;
       display: flex;
@@ -209,7 +209,7 @@
 
     /* Mobile adjustments */
     @media (max-width: 560px) {
-      .chatbox { right: 12px; left: 12px; width: auto; bottom: 100px; }
+      .chatbox { right: 12px; left: 12px; width: auto; bottom: 130px; }
       .chat-toggle { right: 16px; bottom: 16px; }
     }
 
@@ -603,7 +603,7 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
 
   <!-- Back to top + header hide-on-scroll (resolved script) -->
 
-<button id="backToTop" aria-label="Back to top">↑</button>
+<button id="backToTop" type="button" aria-label="Back to top">↑</button>
 
   <script>
     (function(){
@@ -632,7 +632,7 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
       if (b) {
         b.addEventListener('click', () => {
           const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+          document.documentElement.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
         });
       }
     })();

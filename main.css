@@ -38,6 +38,12 @@ img {
   display: block;
 }
 
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 /* ===============================
    Navbar
    =============================== */
@@ -48,6 +54,16 @@ img {
   background: rgba(10, 12, 24, 0.4);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  min-height: 100px;
 }
 
 /* === Nav logo alignment fix === */
@@ -63,8 +79,6 @@ img {
   padding: 0;        /* remove extra padding */
 }
 
-}
-
 .main-nav {
   display: flex;
   gap: 1.5rem;
@@ -76,6 +90,20 @@ img {
 
 .main-nav a:hover {
   color: var(--accent-blue);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .btn-cta {
@@ -95,14 +123,65 @@ img {
    =============================== */
 .hero {
   position: relative;
-  text-align: center;
   padding: 5rem 1rem;
+  text-align: left;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: -1;
+}
+
+.hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 4s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+}
+
+.hero .container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.hero-content {
+  max-width: 700px;
+  z-index: 1;
 }
 
 .hero h1 {
   font-size: 2.8rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
+  background: linear-gradient(90deg, #29b3f0, #d946ef);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
 }
 
 .hero .subtitle {
@@ -113,7 +192,7 @@ img {
 
 .cta-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
 }
 
@@ -132,16 +211,22 @@ img {
   margin-top: 2rem;
 }
 
-.service-card {
-  background: var(--card-bg);
+ .service-card {
+  position: relative;
   padding: 2rem;
   border-radius: 12px;
+  border: 2px solid transparent;
+  background-image: linear-gradient(var(--card-bg), var(--card-bg)),
+    linear-gradient(90deg, #29b3f0, #d946ef);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.08);
+  background-image: linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
+    linear-gradient(90deg, #29b3f0, #d946ef);
 }
 
 .service-card h3 {
@@ -260,7 +345,7 @@ img {
    =============================== */
 .hero .cta-buttons {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;              /* Increased spacing between buttons */
   margin-top: 1.5rem;
 }
@@ -278,14 +363,19 @@ img {
   font-weight: 500;
   color: var(--subtext-color, #94a3b8);
   margin: 1rem 0;
-  text-align: center;
+  text-align: left;
   line-height: 1.6;
 }
 
 .hero-benefits {
+  list-style: none;
+  padding: 0;
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
   gap: 2rem;                /* Spread out icons + text more */
   font-size: 1.05rem;
+  justify-content: flex-start;
 }
 
 .hero-benefits li i {
