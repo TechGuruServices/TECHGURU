@@ -1,4 +1,30 @@
 // theme toggle and mobile menu functionality
+document.addEventListener("DOMContentLoaded", function () {
+  tsParticles.load("tsparticles", {
+    fullScreen: { enable: false },
+    background: { color: "#f8f8fb" }, // match your site background
+    particles: {
+      number: { value: 30, density: { enable: true, area: 800 } },
+      color: { value: "#bbbbbb" },
+      opacity: { value: 0.15, random: true },
+      size: { value: 2, random: true },
+      move: { enable: true, speed: 0.5, direction: "none", random: true, straight: false, outModes: { default: "out" } },
+      links: { enable: true, distance: 120, color: "#bbbbbb", opacity: 0.08, width: 1 }
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: true, mode: "repulse" },
+        onClick: { enable: true, mode: "attract" }
+      },
+      modes: {
+        repulse: { distance: 90, duration: 0.4 },
+        attract: { distance: 200, duration: 0.7 }
+      }
+    },
+    detectRetina: true
+  });
+});
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.documentElement;
