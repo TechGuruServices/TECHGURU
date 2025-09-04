@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <link rel="icon" type="image/x-icon" href="custom-icon.ico">
   <meta charset="UTF-8" />
@@ -17,6 +17,16 @@
   <link rel="icon" href="custom-icon.ico" sizes="any" />
 
   <title>TechGuru | Streamline. Automate. Elevate. </title>
+
+  <script>
+    (function(){
+      try {
+        const stored = localStorage.getItem('tg_theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', stored || (systemDark ? 'dark' : 'light'));
+      } catch(e) {}
+    })();
+  </script>
 
   <!-- Styles (relative for GitHub Pages / Cloudflare) -->
 
@@ -37,12 +47,6 @@
   <!-- Page-local styles that augment main.css (safe to keep) -->
 
   <style>
-    #theme-toggle{position:relative;width:60px;height:30px;border-radius:15px;border:2px solid #22d3ee;background:var(--card-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    #theme-toggle-icon{display:none}
-    #theme-toggle::before{content:'';position:absolute;top:2px;left:2px;width:26px;height:26px;border-radius:50%;background:#22d3ee;box-shadow:0 2px 4px rgba(0,0,0,.2);transition:transform .35s ease,background .35s ease}
-    [data-theme="light"] #theme-toggle{border-color:#d946ef;background:var(--card-bg)}
-    [data-theme="light"] #theme-toggle::before{transform:translateX(30px);background:#d946ef}
-
     .logo{width:180px;height:auto;object-fit:contain}
     .site-header .navbar-container{min-height:100px}
     .logo-container{display:flex;align-items:center;gap:8px;background:transparent!important;padding:0!important}
@@ -315,11 +319,11 @@
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div class="nav-controls">
-        <button id="theme-toggle" aria-label="Toggle theme"><i id="theme-toggle-icon" class="fas fa-moon"></i></button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu"><i class="fas fa-bars"></i></button>
-        <a href="#contact" class="btn-cta">Get Started</a>
-      </div>
+        <div class="nav-controls">
+          <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" aria-pressed="false"><i class="fas fa-moon" aria-hidden="true"></i></button>
+          <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-controls="main-nav" aria-expanded="false"><i class="fas fa-bars" aria-hidden="true"></i></button>
+          <a href="#contact" class="btn-cta">Get Started</a>
+        </div>
     </div>
   </header>
 
@@ -515,13 +519,7 @@ I can help you streamline, automate, and scale your workflows ― let’s get st
     </form>
   </div>
 
-  <!-- Persist saved theme -->
-
-  <script>
-    (function(){const savedTheme=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',savedTheme);})();
-  </script>
-
-  <!-- Hero Slider -->
+    <!-- Hero Slider -->
 
   <script>
     document.addEventListener('DOMContentLoaded',function(){
