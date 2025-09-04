@@ -472,6 +472,27 @@ img {
 .hero-benefits li i {
   font-size: 1.4rem;
   color: var(--accent-blue, #29b3f0);
+   
+}
+
+/* Center all top-level section titles and add a decorative line underneath */
+section > h2 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+section > h2::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), #d946ef);
+    border-radius: 1.5px;
 }
 
 
