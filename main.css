@@ -95,7 +95,7 @@ img {
 .logo-container {
   display: flex;
   align-items: center;
-  gap: 6px;          /* reduce spacing between logo + text */
+  gap: 5px;          /* reduce spacing between logo + text */
 }
 
 .logo-container img,
@@ -257,15 +257,25 @@ img {
   font-size: 2.8rem;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #29b3f0, #d946ef);
+  background: linear-gradient(270deg, #29b3f0, #d946ef, #29b3f0); /* looping gradient */
+  background-size: 400% 400%;
   -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* required for Safari/Chrome */
   color: transparent;
+  animation: gradientTextMove 8s ease infinite;
 }
 
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
+@keyframes gradientTextMove {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 }
 
 .hero .subtitle {
@@ -494,5 +504,6 @@ section > h2::after {
     background: linear-gradient(90deg, var(--accent-blue), #d946ef);
     border-radius: 1.5px;
 }
+
 
 
