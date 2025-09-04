@@ -211,23 +211,33 @@ img {
   margin-top: 2rem;
 }
 
- /* ...other styles... */
-
-.services-grid {
-  display: grid;
-  /* ... */
-}
-
-/* OLD service-card styles */
+/* Service card with gradient border */
 .service-card {
-  /* old styles here */
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: box-shadow 0.3s, transform 0.3s;
+  z-index: 1;
+  /* Gradient border via pseudo */
 }
 
-/* ...other styles... */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px; /* thickness of border */
+  border-radius: 16px;
+  background: linear-gradient(90deg, #29b3f0, #d946ef);
+  z-index: -1;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 1;
+}
+
 .service-card:hover {
-  transform: translateY(-6px);
-  background-image: linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)),
-    linear-gradient(90deg, #29b3f0, #d946ef);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 4px 24px rgba(41,179,240,0.08), 0 2px 8px rgba(217,70,239,0.08);
 }
 
 .service-card h3 {
