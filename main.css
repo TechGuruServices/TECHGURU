@@ -383,8 +383,12 @@ img {
 
 .faq-question {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;   /* center text + chevron together */
+  align-items: center;
+  gap: 0.5rem;               /* space between text and chevron */
+  padding: 1rem 0;
   cursor: pointer;
+  text-align: center;
 }
 
 .faq-question i {
